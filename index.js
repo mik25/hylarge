@@ -1127,7 +1127,7 @@ app.use((req, res) => {
     res.status(404).json({ error: 'Not found' });
 });
 
-const port = process.env.PORT || 9516;
+const port = process.env.PORT || 80;
 app.listen(port, () => {
     console.log(`\n🚀 Addon running at http://localhost:${port}`);
     console.log(`📋 Configuration page: http://localhost:${port}/configure`);
