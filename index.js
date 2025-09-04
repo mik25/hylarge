@@ -55,54 +55,81 @@ const inMemoryDB = {
   }
 };
 
-// Function to get quality symbol based on quality string
+// Enhanced quality symbols with visual hierarchy
 function getQualitySymbol(qualityStr) {
-    if (!qualityStr) return '🤬';
+    const symbols = {
+        '4k': '🎬✨', 
+        '2160p': '🎬✨',
+        'uhd': '🎬✨',
+        '1080p': '🎬🔥',
+        'fhd': '🎬🔥',
+        '720p': '🎬⚡',
+        'hd': '🎬⚡',
+        '480p': '🎬💧',
+        'sd': '🎬💧',
+        'cam': '📹🚫',
+        'ts': '📹🚫',
+        'hdts': '📹🚫',
+        'hdr': '🌈',
+        'dolby': '🔊',
+        'atmos': '🔊🌎',
+        '10bit': '🎨',
+        'remux': '💿',
+        'bluray': '💿🔵'
+    };
+    
+    if (!qualityStr) return '🎬❓';
     
     const qualityLower = qualityStr.toLowerCase();
-    
-    if (qualityLower.includes('4k') || qualityLower.includes('2160p') || qualityLower.includes('uhd')) {
-        return '🗣💨';
-    } else if (qualityLower.includes('1080p') || qualityLower.includes('fhd')) {
-        return '🙉';
-    } else if (qualityLower.includes('720p') || qualityLower.includes('hd')) {
-        return '🙈';
-    } else if (qualityLower.includes('480p') || qualityLower.includes('sd')) {
-        return '🙊';
-    } else if (qualityLower.includes('cam') || qualityLower.includes('ts') || qualityLower.includes('hdts')) {
-        return '📹';
-    } else {
-        return '🤬';
+    for (const [key, symbol] of Object.entries(symbols)) {
+        if (qualityLower.includes(key)) return symbol;
     }
+    
+    return '🎬❓';
 }
 
-// Helper function to create stream entries with proper service preference
+// Enhanced stream entry creation with visual formatting
 function createStreamEntry(stream, service, req) {
     let serviceName = 'Unknown';
-    if (service === 'debridlink') serviceName = 'DebridLink';
-    if (service === 'premiumize') serviceName = 'Premiumize';
-    if (service === 'torbox') serviceName = 'TorBox';
-    if (service === 'realdebrid') serviceName = 'RealDebrid';
+    let serviceEmoji = '🔹';
+    
+    if (service === 'debridlink') {
+        serviceName = 'DebridLink';
+        serviceEmoji = '🟢';
+    }
+    if (service === 'premiumize') {
+        serviceName = 'Premiumize';
+        serviceEmoji = '🔵';
+    }
+    if (service === 'torbox') {
+        serviceName = 'TorBox';
+        serviceEmoji = '🟣';
+    }
+    if (service === 'realdebrid') {
+        serviceName = 'RealDebrid';
+        serviceEmoji = '🔴';
+    }
     
     const qualityDisplay = stream.quality ? stream.quality.toUpperCase() : '';
     const qualitySymbol = getQualitySymbol(qualityDisplay || stream.filename);
     const features = detectVideoFeatures(stream.filename);
-    const featureStr = features.length ? ` | ${features.join(' | ')}` : '';
     
+    // Visual stream name with emoji hierarchy
     const streamName = [
         qualitySymbol,
-        qualityDisplay, 
-        stream.size,
-        `(-(-_( HY )_-)-)`
-    ].filter(Boolean).join(' | ');
-    
+        `**${qualityDisplay || '?'}**`, 
+        `📦${stream.size || '?'}`,
+        `${serviceEmoji} ${serviceName.slice(0, 3)}`
+    ].filter(Boolean).join(' ');
+
+    // Formatted stream title with Markdown
     const streamTitle = [
-        stream.filename,
-        [
-            `☘️ ${stream.source}`,
-            featureStr
-        ].filter(Boolean).join(' | ')
-    ].filter(Boolean).join('\n');
+        `### 🎬 ${stream.filename}`,
+        `---`,
+        `**Source:** ${stream.source}`,
+        features.length ? `**Features:** ${features.join(' • ')}` : '',
+        `**Service:** ${serviceName}`
+    ].filter(Boolean).join('\n\n');
     
     const hash = stream.hash.toLowerCase();
     const magnetLink = `magnet:?xt=urn:btih:${hash}&service=${service}`;
@@ -172,15 +199,6 @@ function getIdType(id) {
     return null;
 }
 
-// Helper function to get service name
-function getServiceName(service) {
-    if (service instanceof DebridLink) return 'DebridLink';
-    if (service instanceof Premiumize) return 'Premiumize';
-    if (service instanceof TorBox) return 'TorBox';
-    if (service instanceof RealDebrid || service.constructor.name === 'RealDebrid') return 'RealDebrid';
-    return 'Unknown';
-}
-
 app.use(cors({
     origin: '*',
     methods: ['GET', 'POST', 'OPTIONS'],
@@ -201,8 +219,8 @@ app.get('/manifest.json', (req, res) => {
     const baseUrl = `${req.protocol}://${req.get('host')}`;
     const manifest = {
         id: 'org.magnetio.hy',
-        version: '1.5.0',
-        name: '(-(-_( HY )_-)-)',
+        version: '1.0.0',
+        name: '🎬 🅷🅈',
         description: 'Stream movies and series via Debrid services - Configuration Required',
         resources: [],
         types: ['movie', 'series'],
@@ -225,8 +243,8 @@ app.get('/:apiKeys/manifest.json', (req, res) => {
     if (!debridServices.length) {
         return res.json({
             id: 'org.magnetio.hy',
-            version: '1.5.0',
-            name: '(-(-_( HY )_-)-)',
+            version: '1.0.0',
+            name: '🎬 🅷🅈',
             description: 'Invalid API keys provided - Please check your configuration',
             resources: [],
             types: ['movie', 'series'],
@@ -242,9 +260,9 @@ app.get('/:apiKeys/manifest.json', (req, res) => {
 
     const manifest = {
         id: 'org.magnetio.hy',
-        version: '1.5.0',
-        name: '(-(-_( HY )_-)-)',
-        description: 'Stream movies and series via Debrid services',
+        version: '1.0.0',
+        name: '🎬 🅷🅈 Debrid Streams',
+        description: '### Premium Streaming via Debrid\n⚡ Instant access • 🎥 4K HDR • 📺 Series',
         resources: ['stream'],
         types: ['movie', 'series'],
         idPrefixes: ['tt', 'tmdb'],
@@ -367,7 +385,7 @@ async function readContentData(type, tmdbId, season = null, episode = null) {
         
         return content;
     } catch (error) {
-        console.error(`⛔ Error reading ${type} data:`, error);
+        console.error(`❌ Error reading ${type} data:`, error);
         return null;
     }
 }
@@ -433,7 +451,7 @@ async function getStreams(type, id, season = null, episode = null) {
         console.log(`Processed ${processedResults.length} valid streams`);
         return processedResults;
     } catch (error) {
-        console.error('⛔ Error fetching streams:', error);
+        console.error('❌ Error fetching streams:', error);
         return [];
     }
 }
@@ -546,10 +564,10 @@ async function mergeAndSaveStreams(type, tmdbId, newStreams = [], title, season 
         });
     } catch (error) {
         if (error.name === 'AsyncLockTimeout') {
-            console.error(`⛔ Lock timeout, skipping save`);
+            console.error(`❌ Lock timeout, skipping save`);
             return [];
         }
-        console.error('⛔ Error merging and saving streams:', error);
+        console.error('❌ Error merging and saving streams:', error);
         return [];
     }
 }
@@ -812,69 +830,21 @@ app.get('/:apiKeys/stream/:type/:id.json', async (req, res) => {
         }
 
     } catch (error) {
-        console.error('⛔ Error processing streams:', error.message);
+        console.error('❌ Error processing streams:', error.message);
         if (!res.headersSent) {
             res.json({ streams: [] });
         }
     }
 });
 
-async function getValidStreamingUrl(service, magnetLink, hash) {
-    const serviceName = getServiceName(service);
-    
-    try {
-        let streamUrl;
-        
-        if (service instanceof RealDebrid || service.constructor.name === 'RealDebrid') {
-            // Check availability first for RealDebrid
-            const availability = await service.checkInstantAvailability([hash]);
-            if (!availability[hash]?.cached) {
-                console.log(`⛔ ${serviceName}: Not cached`);
-                return null;
-            }
-            streamUrl = await service.getCachedUrl(magnetLink);
-            
-        } else if (service instanceof TorBox) {
-            streamUrl = await service.getStreamUrl(magnetLink);
-            
-        } else if (service instanceof Premiumize) {
-            streamUrl = await service.getStreamUrl(magnetLink);
-            
-        } else {
-            streamUrl = await service.getStreamUrl(magnetLink);
-        }
-        
-        // Simple URL validation
-        if (!streamUrl || !streamUrl.startsWith('http')) {
-            console.log(`⛔ ${serviceName}: Invalid stream URL: ${streamUrl}`);
-            return null;
-        }
-        
-        console.log(`✅ ${serviceName}: Got valid streaming URL`);
-        return streamUrl;
-        
-    } catch (error) {
-        if (error.message === ERROR.NOT_PREMIUM) {
-            console.log(`⚠️ ${serviceName}: Not premium`);
-            return null;
-        }
-        if (error.message.includes('active download limit') || error.message.includes('ACTIVE_LIMIT')) {
-            console.log(`⚠️ ${serviceName}: Download limit reached`);
-            return null;
-        }
-        console.error(`⛔ ${serviceName} error:`, error.message);
-        return null;
-    }
-}
-
-// ENHANCED MAGNET HANDLER WITH FALLBACK MECHANISM
+// ENHANCED MAGNET HANDLER - Fixed streaming issues
 app.get('/:apiKeys/:magnetLink', async (req, res) => {
     const { apiKeys, magnetLink } = req.params;
     
     try {
         const debridServices = getDebridServices(apiKeys);
         if (!debridServices.length) {
-            console.error('⛔ No valid debrid service configured');
+            console.error('❌ No valid debrid service configured');
             return res.status(500).json({ error: 'No valid debrid service configured' });
         }
 
@@ -906,7 +876,10 @@ app.get('/:apiKeys/:magnetLink', async (req, res) => {
             
             console.log('Service order after sorting:');
             debridServices.forEach(service => {
-                console.log(`- ${getServiceName(service)}`);
+                if (service instanceof DebridLink) console.log('- DebridLink');
+                else if (service instanceof Premiumize) console.log('- Premiumize');
+                else if (service instanceof TorBox) console.log('- TorBox');
+                else if (service instanceof RealDebrid || service.constructor.name === 'RealDebrid') console.log('- RealDebrid');
             });
         }
         
@@ -920,16 +893,22 @@ app.get('/:apiKeys/:magnetLink', async (req, res) => {
         }
         console.log(`Hash: ${hash}`);
 
-        // Try original stream first with proper stream validation
+        // Try each service in order with proper stream validation
         for (const service of debridServices) {
             try {
-                let serviceName = getServiceName(service);
+                let serviceName = 'Unknown';
+                if (service instanceof DebridLink) serviceName = 'DebridLink';
+                else if (service instanceof Premiumize) serviceName = 'Premiumize';
+                else if (service instanceof TorBox) serviceName = 'TorBox';
+                else if (service instanceof RealDebrid || service.constructor.name === 'RealDebrid') serviceName = 'RealDebrid';
+                
                 console.log(`Trying service: ${serviceName}`);
                 
+                // Use the improved getValidStreamingUrl logic
                 const streamUrl = await getValidStreamingUrl(service, cleanMagnet, hash);
                 
                 if (!streamUrl) {
-                    console.log(`⛔ No valid stream URL from ${serviceName}`);
+                    console.log(`❌ No valid stream URL from ${serviceName}`);
                     continue;
                 }
                 
@@ -955,7 +934,7 @@ app.get('/:apiKeys/:magnetLink', async (req, res) => {
                     });
                     
                     if (!testResponse.ok) {
-                        console.log(`⛔ Stream URL test failed: ${testResponse.status} ${testResponse.statusText}`);
+                        console.log(`❌ Stream URL test failed: ${testResponse.status} ${testResponse.statusText}`);
                         continue;
                     }
                     
@@ -966,12 +945,17 @@ app.get('/:apiKeys/:magnetLink', async (req, res) => {
                 }
                 
                 // Use proper redirect with status code
-                console.log(`📄 Redirecting to stream URL...`);
+                console.log(`🔄 Redirecting to stream URL...`);
                 return res.redirect(302, streamUrl);
                 
             } catch (error) {
-                let serviceName = getServiceName(service);
-                console.error(`⛔ ${serviceName} failed:`, error.message);
+                let serviceName = 'Unknown';
+                if (service instanceof DebridLink) serviceName = 'DebridLink';
+                else if (service instanceof Premiumize) serviceName = 'Premiumize';
+                else if (service instanceof TorBox) serviceName = 'TorBox';
+                else if (service instanceof RealDebrid || service.constructor.name === 'RealDebrid') serviceName = 'RealDebrid';
+                
+                console.error(`❌ ${serviceName} failed:`, error.message);
                 
                 // If it's a non-premium error, skip to next service
                 if (error.message === ERROR.NOT_PREMIUM) {
@@ -984,95 +968,70 @@ app.get('/:apiKeys/:magnetLink', async (req, res) => {
             }
         }
 
-        // FALLBACK MECHANISM: Get alternative streams
-        console.log('\n🔍 Original stream failed, trying fallback streams...');
-        
-        let fallbackStreams = [];
-        try {
-            // Extract content info from referer
-            const referer = req.get('referer');
-            const streamMatch = referer?.match(/\/stream\/(movie|series)\/(.*?)\.json/);
-            
-            if (streamMatch) {
-                const [, type, id] = streamMatch;
-                let tmdbId = id;
-                let season = null;
-                let episode = null;
-
-                if (type === 'series') {
-                    [tmdbId, season, episode] = id.split(':');
-                }
-
-                console.log(`Getting fallback streams for ${type}: ${tmdbId}`);
-                fallbackStreams = await getStreams(type, tmdbId, season, episode);
-                console.log(`Found ${fallbackStreams.length} fallback streams`);
-            }
-        } catch (err) {
-            console.warn('Could not get fallback streams:', err.message);
-        }
-
-        if (fallbackStreams.length > 0) {
-            // Sort fallback streams by quality (best first)
-            const sortedFallbacks = fallbackStreams.sort((a, b) => {
-                const qualityA = parseQuality(a.filename || '');
-                const qualityB = parseQuality(b.filename || '');
-                return qualityB - qualityA;
-            });
-
-            for (const fallbackStream of sortedFallbacks.slice(0, 10)) { // Limit to top 10
-                // Skip if this is the same stream we already tried
-                if (fallbackStream.hash?.toLowerCase() === hash) continue;
-
-                console.log(`\n🔍 Trying fallback: ${fallbackStream.filename}`);
-                const fallbackMagnet = `magnet:?xt=urn:btih:${fallbackStream.hash}`;
-
-                for (const service of debridServices) {
-                    try {
-                        const serviceName = getServiceName(service);
-                        const streamUrl = await getValidStreamingUrl(service, fallbackMagnet, fallbackStream.hash);
-                        
-                        if (!streamUrl) {
-                            console.log(`⛔ No valid fallback stream from ${serviceName}`);
-                            continue;
-                        }
-                        
-                        console.log(`✅ Fallback success with ${serviceName}`);
-                        
-                        // Set headers and redirect for fallback
-                        res.set({
-                            'Access-Control-Allow-Origin': '*',
-                            'Access-Control-Allow-Headers': '*',
-                            'Access-Control-Allow-Methods': 'GET, HEAD, OPTIONS',
-                            'Cache-Control': 'no-cache',
-                            'X-Content-Type-Options': 'nosniff'
-                        });
-                        
-                        return res.redirect(302, streamUrl);
-                        
-                    } catch (error) {
-                        if (error.message === ERROR.NOT_PREMIUM) continue;
-                        if (error.message.includes('active download limit')) continue;
-                        console.error(`Fallback failed:`, error.message);
-                    }
-                }
-            }
-        }
-
-        // If we get here, all services and fallbacks failed
-        console.error('⛔ All debrid services and fallbacks failed');
+        // If we get here, all services failed
+        console.error('❌ All debrid services failed');
         return res.status(500).json({ 
             error: 'All debrid services failed',
-            details: 'No service could provide a stream URL for this magnet or any fallback'
+            details: 'No service could provide a stream URL for this magnet'
         });
 
     } catch (error) {
-        console.error('⛔ Error processing magnet:', error);
+        console.error('❌ Error processing magnet:', error);
         return res.status(500).json({ 
             error: 'Failed to process magnet', 
             details: error.message 
         });
     }
 });
+
+// Add the getValidStreamingUrl function from your working version
+async function getValidStreamingUrl(service, magnetLink, hash) {
+    const serviceName = service.constructor.name;
+    
+    try {
+        let streamUrl;
+        
+        if (service instanceof RealDebrid || service.constructor.name === 'RealDebrid') {
+            // Check availability first for RealDebrid
+            const availability = await service.checkInstantAvailability([hash]);
+            if (!availability[hash]?.cached) {
+                console.log(`❌ ${serviceName}: Not cached`);
+                return null;
+            }
+            streamUrl = await service.getCachedUrl(magnetLink);
+            
+        } else if (service instanceof TorBox) {
+            streamUrl = await service.getStreamUrl(magnetLink);
+            
+        } else if (service instanceof Premiumize) {
+            streamUrl = await service.getStreamUrl(magnetLink);
+            
+        } else {
+            streamUrl = await service.getStreamUrl(magnetLink);
+        }
+        
+        // Simple URL validation
+        if (!streamUrl || !streamUrl.startsWith('http')) {
+            console.log(`❌ ${serviceName}: Invalid stream URL: ${streamUrl}`);
+            return null;
+        }
+        
+        console.log(`✅ ${serviceName}: Got valid streaming URL`);
+        return streamUrl;
+        
+    } catch (error) {
+        if (error.message === ERROR.NOT_PREMIUM) {
+            console.log(`⚠️ ${serviceName}: Not premium`);
+            return null;
+        }
+        if (error.message.includes('active download limit') || error.message.includes('ACTIVE_LIMIT')) {
+            console.log(`⚠️ ${serviceName}: Download limit reached`);
+            return null;
+        }
+        console.error(`❌ ${serviceName} error:`, error.message);
+        return null;
+    }
+}
 
 // Health check endpoint
 app.get('/health', (req, res) => {
@@ -1096,7 +1055,11 @@ app.get('/debug/:apiKeys/:magnetLink', async (req, res) => {
         const results = [];
         
         for (const service of debridServices) {
-            const serviceName = getServiceName(service);
+            let serviceName = 'Unknown';
+            if (service instanceof DebridLink) serviceName = 'DebridLink';
+            else if (service instanceof Premiumize) serviceName = 'Premiumize';
+            else if (service instanceof TorBox) serviceName = 'TorBox';
+            else if (service instanceof RealDebrid || service.constructor.name === 'RealDebrid') serviceName = 'RealDebrid';
             
             try {
                 const streamUrl = await getValidStreamingUrl(service, cleanMagnet, hash);
@@ -1153,7 +1116,7 @@ app.get('/debug/:apiKeys/:magnetLink', async (req, res) => {
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-    console.error('\n⛔ Unhandled error:', err);
+    console.error('\n❌ Unhandled error:', err);
     if (!res.headersSent) {
         res.status(500).json({ error: 'Internal server error', details: err.message });
     }
@@ -1164,9 +1127,8 @@ app.use((req, res) => {
     res.status(404).json({ error: 'Not found' });
 });
 
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 9516;
 app.listen(port, () => {
     console.log(`\n🚀 Addon running at http://localhost:${port}`);
     console.log(`📋 Configuration page: http://localhost:${port}/configure`);
 });
-            
