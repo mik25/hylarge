@@ -22,14 +22,6 @@ export const STREAM_SOURCES = {
     url : 'https://jacred.h-y.workers.dev',
     name: '𝓑𝓲𝓽𝓢𝓮𝓪𝓻𝓬𝓱'
   },
-  cf_bt4: {
-    url : 'https://uhdnews.h-y.workers.dev',
-    name: '𝐁𝐓𝟒𝐆𝐏𝐑𝐗'
-  },
-  cf_eztv: {
-    url : 'https://ezseries.h-y.workers.dev',
-    name: '𝐄𝐙𝐓𝐕 🖥️'
-  },
   cf_extto: {
     url : 'https://extto.h-y.workers.dev',
     name: 'Ｅｘｔｔｏ'
@@ -48,7 +40,7 @@ export const STREAM_SOURCES = {
   },
   cf_tpb: {
     url : 'https://odtpb.h-y.workers.dev',
-    name: '❝𝓣𝓟𝓑❞'
+    name: '❝☭🇷🇺Tɾαƈƙҽɾ❞'
   },  
   cf_torr9: {
     url: 'https://torr9.h-y.workers.dev',
@@ -57,9 +49,5 @@ export const STREAM_SOURCES = {
   cf_uindex: {
     url : 'https://uindex.h-y.workers.dev',
     name: '【ＵＩＮＤＥＸ】'
-  },
-  cf_yts: {
-    url : 'https://yts.h-y.workers.dev',
-    name: 'ＹＴＳ．ＭＸ'
   }
 };
