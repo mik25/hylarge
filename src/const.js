@@ -14,10 +14,6 @@ export const VIDEO_EXTENSIONS = [
 ];
 
 export const STREAM_SOURCES = {
-  cf_1337: {
-    url : 'https://1337x.h-y.workers.dev',
-    name: '1️3️⃣3️⃣7️⃣'
-  },
   cf_bitsearch: {
     url : 'https://jacred.h-y.workers.dev',
     name: '𝓑𝓲𝓽𝓢𝓮𝓪𝓻𝓬𝓱'
@@ -30,18 +26,10 @@ export const STREAM_SOURCES = {
     url : 'https://glodls.h-y.workers.dev',
     name: 'Gl🌞DLS'
   },
-   cf_rutrack: {
-    url: 'https://rutrack.h-y.workers.dev',
-    name: '☭🇷🇺Tɾαƈƙҽɾ'
-  }, 
   cf_tdown: {
     url : 'https://tdown.h-y.workers.dev',
     name: '❝𝐓𝐨𝐫𝐫𝐞𝐧𝐭𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝❞'
   },
-  cf_tpb: {
-    url : 'https://odtpb.h-y.workers.dev',
-    name: '❝☭🇷🇺Tɾαƈƙҽɾ❞'
-  },  
   cf_torr9: {
     url: 'https://torr9.h-y.workers.dev',
     name: 'ƬӨЯЯΣПƬZ9'
@@ -51,3 +39,4 @@ export const STREAM_SOURCES = {
     name: '【ＵＩＮＤＥＸ】'
   }
 };
+
