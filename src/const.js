@@ -14,6 +14,10 @@ export const VIDEO_EXTENSIONS = [
 ];
 
 export const STREAM_SOURCES = {
+ cf_1337: {
+    url : 'https://vercel-tgx.vercel.app',
+    name: '1️3️⃣3️⃣7️⃣'
+  },
   cf_bitsearch: {
     url : 'https://jacred.h-y.workers.dev',
     name: '𝓑𝓲𝓽𝓢𝓮𝓪𝓻𝓬𝓱'
@@ -39,4 +43,5 @@ export const STREAM_SOURCES = {
     name: '【ＵＩＮＤＥＸ】'
   }
 };
+
 
