@@ -220,7 +220,7 @@ app.get('/manifest.json', (req, res) => {
     const manifest = {
         id: 'org.magnetio.hy',
         version: '1.0.0',
-        name: '🎬 🅷🅈',
+        name: '🅷🅈',
         description: 'Stream movies and series via Debrid services - Configuration Required',
         resources: [],
         types: ['movie', 'series'],
@@ -244,7 +244,7 @@ app.get('/:apiKeys/manifest.json', (req, res) => {
         return res.json({
             id: 'org.magnetio.hy',
             version: '1.0.0',
-            name: '🎬 🅷🅈',
+            name: '🅷🅈',
             description: 'Invalid API keys provided - Please check your configuration',
             resources: [],
             types: ['movie', 'series'],
@@ -261,7 +261,7 @@ app.get('/:apiKeys/manifest.json', (req, res) => {
     const manifest = {
         id: 'org.magnetio.hy',
         version: '1.0.0',
-        name: '🎬 🅷🅈 Debrid Streams',
+        name: '🅷🅈 Debrid Streams',
         description: '### Premium Streaming via Debrid\n⚡ Instant access • 🎥 4K HDR • 📺 Series',
         resources: ['stream'],
         types: ['movie', 'series'],
@@ -1127,7 +1127,7 @@ app.use((req, res) => {
     res.status(404).json({ error: 'Not found' });
 });
 
-const port = process.env.PORT || 443;
+const port = process.env.PORT || 80;
 app.listen(port, () => {
     console.log(`\n🚀 Addon running at http://localhost:${port}`);
     console.log(`📋 Configuration page: http://localhost:${port}/configure`);
