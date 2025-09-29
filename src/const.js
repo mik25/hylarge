@@ -26,22 +26,10 @@ export const STREAM_SOURCES = {
     url : 'https://extto.h-y.workers.dev',
     name: 'Ｅｘｔｔｏ'
   },
-  cf_glodls: {
-    url : 'https://glodls.h-y.workers.dev',
-    name: 'Gl🌞DLS'
+  cf_tgx: {
+    url : 'https://vercel-tgx.vercel.app',
+    name: 'TOᖇᖇEᑎTGᗩᒪᗩ᙭Y'
   },
-   cf_rutrack: {
-    url: 'https://rutrack.h-y.workers.dev',
-    name: '☭🇷🇺Tɾαƈƙҽɾ'
-  }, 
-  cf_tdown: {
-    url : 'https://tdown.h-y.workers.dev',
-    name: '❝𝐓𝐨𝐫𝐫𝐞𝐧𝐭𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝❞'
-  },
-  cf_tpb: {
-    url : 'https://odtpb.h-y.workers.dev',
-    name: '❝☭🇷🇺Tɾαƈƙҽɾ❞'
-  },  
   cf_torr9: {
     url: 'https://torr9.h-y.workers.dev',
     name: 'ƬӨЯЯΣПƬZ9'
@@ -51,4 +39,5 @@ export const STREAM_SOURCES = {
     name: '【ＵＩＮＤＥＸ】'
   }
 };
+
 
