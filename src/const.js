@@ -15,7 +15,7 @@ export const VIDEO_EXTENSIONS = [
 
 export const STREAM_SOURCES = {
   cf_1337: {
-    url : 'https://1337x.h-y.workers.dev',
+    url : 'https://testittv.h-y.workers.dev',
     name: '1️3️⃣3️⃣7️⃣'
   },
   cf_bitsearch: {
@@ -23,7 +23,7 @@ export const STREAM_SOURCES = {
     name: '𝓑𝓲𝓽𝓢𝓮𝓪𝓻𝓬𝓱'
   },
   cf_extto: {
-    url : 'https://extto.h-y.workers.dev',
+    url : 'https://chrome-en.h-y.workers.dev',
     name: 'Ｅｘｔｔｏ'
   },
   cf_tgx: {
@@ -33,11 +33,8 @@ export const STREAM_SOURCES = {
   cf_torr9: {
     url: 'https://torr9.h-y.workers.dev',
     name: 'ƬӨЯЯΣПƬZ9'
-  },
-  cf_uindex: {
-    url : 'https://uindex.h-y.workers.dev',
-    name: '【ＵＩＮＤＥＸ】'
   }
 };
+
 
 
