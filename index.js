@@ -202,7 +202,7 @@ app.get('/manifest.json', (req, res) => {
     const manifest = {
         id: 'org.magnetio.hy',
         version: '1.5.0',
-        name: '(-(-_( HY )_-)-)',
+        name: '☘️(-_( HY )_-)☘️',
         description: 'Stream movies and series via Debrid services - Configuration Required',
         resources: [],
         types: ['movie', 'series'],
@@ -226,7 +226,7 @@ app.get('/:apiKeys/manifest.json', (req, res) => {
         return res.json({
             id: 'org.magnetio.hy',
             version: '1.5.0',
-            name: '(-(-_( HY )_-)-)',
+            name: '☘️(-_( HY )_-)☘️',
             description: 'Invalid API keys provided - Please check your configuration',
             resources: [],
             types: ['movie', 'series'],
@@ -243,7 +243,7 @@ app.get('/:apiKeys/manifest.json', (req, res) => {
     const manifest = {
         id: 'org.magnetio.hy',
         version: '1.5.0',
-        name: '(-(-_( HY )_-)-)',
+        name: '☘️(-_( HY )_-)☘️',
         description: 'Stream movies and series via Debrid services',
         resources: ['stream'],
         types: ['movie', 'series'],
