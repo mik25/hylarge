@@ -15,26 +15,31 @@ export const VIDEO_EXTENSIONS = [
 
 export const STREAM_SOURCES = {
   cf_1337: {
-    url : 'https://testittv.h-y.workers.dev',
+    url : 'https://1337x.h-y.workers.dev',
     name: '1️3️⃣3️⃣7️⃣'
-  },
-  cf_bitsearch: {
-    url : 'https://jacred.h-y.workers.dev',
-    name: '𝓑𝓲𝓽𝓢𝓮𝓪𝓻𝓬𝓱'
   },
   cf_extto: {
     url : 'https://chrome-en.h-y.workers.dev',
-    name: 'Ｅｘｔｔｏ'
+    name: 'BｔSｏW'
   },
   cf_tgx: {
     url : 'https://vercel-tgx.vercel.app',
     name: 'TOᖇᖇEᑎTGᗩᒪᗩ᙭Y'
   },
-  cf_torr9: {
-    url: 'https://torr9.h-y.workers.dev',
-    name: 'ƬӨЯЯΣПƬZ9'
+   cf_rutrack: {
+    url: 'https://rutrack.h-y.workers.dev',
+    name: '☭🇷🇺Tɾαƈƙҽɾ'
+  }, 
+  cf_tdown: {
+    url : 'https://tdown.h-y.workers.dev',
+    name: '❝𝐓𝐨𝐫𝐫𝐞𝐧𝐭𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝❞'
+  },
+  cf_tpb: {
+    url : 'https://odtpb.h-y.workers.dev',
+    name: '❝TPB❞'
+  },  
+  cf_yts: {
+    url : 'https://yts.h-y.workers.dev',
+    name: 'ＹＴＳ．ＭＸ'
   }
 };
-
-
-
