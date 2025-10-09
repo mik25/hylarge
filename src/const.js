@@ -42,12 +42,13 @@ export const STREAM_SOURCES = {
     url : 'https://odtpb.h-y.workers.dev',
     name: '❝☭🇷🇺Tɾαƈƙҽɾ❞'
   },  
-  cf_torr9: {
-    url: 'https://torr9.h-y.workers.dev',
-    name: 'ƬӨЯЯΣПƬZ9'
+  cf_yts: {
+    url : 'https://yts.h-y.workers.dev',
+    name: 'ＹＴＳ．ＭＸ',
   },
   cf_uindex: {
     url : 'https://uindex.h-y.workers.dev',
     name: '【ＵＩＮＤＥＸ】'
   }
 };
+
