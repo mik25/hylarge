@@ -18,17 +18,13 @@ export const STREAM_SOURCES = {
     url : 'https://1337x.h-y.workers.dev',
     name: '1️3️⃣3️⃣7️⃣'
   },
-  cf_bitsearch: {
-    url : 'https://jacred.h-y.workers.dev',
-    name: '𝓑𝓲𝓽𝓢𝓮𝓪𝓻𝓬𝓱'
-  },
   cf_extto: {
-    url : 'https://extto.h-y.workers.dev',
-    name: 'Ｅｘｔｔｏ'
+    url : 'https://chrome-en.h-y.workers.dev',
+    name: 'BｔSｏW'
   },
-  cf_glodls: {
-    url : 'https://glodls.h-y.workers.dev',
-    name: 'Gl🌞DLS'
+  cf_tgx: {
+    url : 'https://vercel-tgx.vercel.app',
+    name: 'TOᖇᖇEᑎTGᗩᒪᗩ᙭Y'
   },
    cf_rutrack: {
     url: 'https://rutrack.h-y.workers.dev',
@@ -40,15 +36,12 @@ export const STREAM_SOURCES = {
   },
   cf_tpb: {
     url : 'https://odtpb.h-y.workers.dev',
-    name: '❝☭🇷🇺Tɾαƈƙҽɾ❞'
+    name: '❝TPB❞'
   },  
   cf_yts: {
     url : 'https://yts.h-y.workers.dev',
-    name: 'ＹＴＳ．ＭＸ',
-  },
-  cf_uindex: {
-    url : 'https://uindex.h-y.workers.dev',
-    name: '【ＵＩＮＤＥＸ】'
-  }
+    name: 'ＹＴＳ．ＭＸ'
+    }
 };
+
 
