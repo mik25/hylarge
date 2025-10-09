@@ -15,7 +15,7 @@ export const VIDEO_EXTENSIONS = [
 
 export const STREAM_SOURCES = {
  cf_1337: {
-    url : 'https://vercel-tgx.vercel.app',
+    url : 'https://chrome-en.h-y.workers.dev',
     name: '1️3️⃣3️⃣7️⃣'
   },
   cf_bitsearch: {
@@ -31,17 +31,18 @@ export const STREAM_SOURCES = {
     name: 'Gl🌞DLS'
   },
   cf_tdown: {
-    url : 'https://tdown.h-y.workers.dev',
+    url : 'https://odtpb.h-y.workers.dev',
     name: '❝𝐓𝐨𝐫𝐫𝐞𝐧𝐭𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝❞'
   },
   cf_torr9: {
-    url: 'https://torr9.h-y.workers.dev',
+    url: 'https://testittv.h-y.workers.dev',
     name: 'ƬӨЯЯΣПƬZ9'
   },
   cf_uindex: {
-    url : 'https://uindex.h-y.workers.dev',
-    name: '【ＵＩＮＤＥＸ】'
+    url : 'https://yts.h-y.workers.dev',
+    name: '【YTS】'
   }
 };
+
 
 
