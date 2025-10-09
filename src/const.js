@@ -41,7 +41,8 @@ export const STREAM_SOURCES = {
   cf_yts: {
     url : 'https://yts.h-y.workers.dev',
     name: 'ＹＴＳ．ＭＸ'
-    }
+  }
 };
+
 
 
